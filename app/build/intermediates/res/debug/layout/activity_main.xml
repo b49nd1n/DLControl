@@ -1,0 +1,319 @@
+<LinearLayout android:id="@+id/relativelayout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="true"
+              android:gravity="fill_horizontal"
+              android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/main"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/FCLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="20"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/FCFixtNameTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/fixtname"/>
+
+                        <AutoCompleteTextView
+                            android:id="@+id/FCFixtNameEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="fill_horizontal"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/FCsaveFixtBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:text="@string/saveshow"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/FC2Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <Button
+                        android:id="@+id/FCaddFunctBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/addfunct"/>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"/>
+
+                    <Button
+                        android:id="@+id/FCdelFunctBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/delfunct"
+                        android:visibility="invisible"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <!-- SC_Layout-->
+        <LinearLayout
+
+            android:id="@+id/SCLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/second"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="0dp "-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="0.92"-->
+            <!--android:orientation="vertical" >-->
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/SCaddFrameBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/addframe"
+                        android:textSize="14sp"
+                        android:layout_weight="3"/>
+                    <Button
+                        android:id="@+id/SCdelFrameBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/delframe"
+                        android:textSize="14sp"
+                        android:layout_weight="3"/>
+
+                    <ImageButton
+                        android:id="@+id/SCPlayBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/play_small"
+                        android:background="@color/alpha"
+                        android:layout_weight="2"/>
+
+
+                    <Button
+                        android:id="@+id/SCsaveShowBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/saveshow"
+                        android:textSize="15sp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SCtable_num"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SCtable_frametime"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SCtable_fadetime"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+            <ScrollView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/SCFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- ГЛАВНАЯ КНОПКААА-->
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_horizontal|center_vertical">
+            <ImageButton
+                android:id="@+id/startbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/play"
+                android:textSize="25sp"
+                android:textStyle="bold|italic"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/functitlelayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <Switch
+                    android:id="@+id/manualsw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manual"/>
+
+                <Spinner
+                    android:id="@+id/fixtchoose"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+
+            <HorizontalScrollView android:layout_width="fill_parent"
+                                  android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/DmxStatusTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/manualscroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/manuallayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/second"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/programlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/programchoose"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                >
+                <Button
+                    android:id="@+id/showloadbtn"
+                    android:layout_width="165dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/third"
+                    android:gravity="center|center_vertical"
+                    android:text="@string/showbtn"
+                    android:textSize="20sp"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/home/mihail/AndroidstudioProjects/DLControl/app/src/main/res/layout/activity_main.xml -->

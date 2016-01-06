@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_ConfigAdd"
+        android:orderInCategory="50"
+        android:showAsAction="never"
+        android:title="@string/action_ConfigAdd"/>
+
+     <item
+        android:id="@+id/action_SCadd"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_SCAdd"/>
+     
+     <item
+         android:id="@+id/action_Fixtadd"
+         android:orderInCategory="200"
+         android:showAsAction="never"
+         android:title="@string/action_FixtAdd" />
+    <item
+        android:id="@+id/action_DMXStatus"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_DmxStatus"
+        />
+
+</menu>
+<!-- From: file:/home/mihail/AndroidstudioProjects/DLControl/app/src/main/res/menu/main.xml -->
