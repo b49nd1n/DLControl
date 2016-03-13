@@ -1,0 +1,99 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="layout.SecondFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/functitlelayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <Switch
+                    android:id="@+id/manualsw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manual"/>
+
+                <Spinner
+                    android:id="@+id/fixtchoose"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+
+            <HorizontalScrollView android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/DmxStatusTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="ScrollViewSize"/>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/manualscroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/manuallayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/second"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/programlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/programchoose"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                >
+                <Button
+                    android:id="@+id/showloadbtn"
+                    android:layout_width="165dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/third"
+                    android:gravity="center|center_vertical"
+                    android:text="@string/showbtn"
+                    android:textSize="20sp"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

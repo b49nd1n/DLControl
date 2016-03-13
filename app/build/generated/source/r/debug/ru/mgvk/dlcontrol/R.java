@@ -31,7 +31,7 @@ public final class R {
         public static final int stop=0x7f020008;
     }
     public static final class id {
-        public static final int DmxStatusTxt=0x7f080014;
+        public static final int DmxStatusTxt=0x7f080015;
         public static final int FC2Layout=0x7f080007;
         public static final int FCFixtNameEdit=0x7f080005;
         public static final int FCFixtNameTxt=0x7f080004;
@@ -45,25 +45,32 @@ public final class R {
         public static final int SCaddFrameBtn=0x7f08000b;
         public static final int SCdelFrameBtn=0x7f08000c;
         public static final int SCsaveShowBtn=0x7f08000e;
-        public static final int action_ConfigAdd=0x7f08001a;
-        public static final int action_DMXStatus=0x7f08001d;
-        public static final int action_Fixtadd=0x7f08001c;
-        public static final int action_SCadd=0x7f08001b;
-        public static final int fixtchoose=0x7f080013;
-        public static final int functitlelayout=0x7f080011;
+        public static final int action_ConfigAdd=0x7f08001f;
+        public static final int action_DMXStatus=0x7f080022;
+        public static final int action_Fixtadd=0x7f080021;
+        public static final int action_SCadd=0x7f080020;
+        public static final int delete_frame=0x7f08001e;
+        public static final int fade_time=0x7f08001d;
+        public static final int fixtchoose=0x7f080014;
+        public static final int fragment=0x7f080011;
+        public static final int frame_number=0x7f08001b;
+        public static final int frame_time=0x7f08001c;
+        public static final int functitlelayout=0x7f080012;
         public static final int mainlayout=0x7f080001;
-        public static final int manuallayout=0x7f080016;
-        public static final int manualscroll=0x7f080015;
-        public static final int manualsw=0x7f080012;
-        public static final int programchoose=0x7f080018;
-        public static final int programlayout=0x7f080017;
+        public static final int manuallayout=0x7f080017;
+        public static final int manualscroll=0x7f080016;
+        public static final int manualsw=0x7f080013;
+        public static final int programchoose=0x7f080019;
+        public static final int programlayout=0x7f080018;
         public static final int relativelayout=0x7f080000;
         public static final int scrollView=0x7f080002;
-        public static final int showloadbtn=0x7f080019;
+        public static final int showloadbtn=0x7f08001a;
         public static final int startbtn=0x7f080010;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int fragment_second=0x7f030001;
+        public static final int sc_frame=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -103,22 +110,23 @@ public final class R {
         public static final int framenumber=0x7f06001f;
         public static final int frametime=0x7f060020;
         public static final int gtxt=0x7f060021;
-        public static final int hello_world=0x7f060022;
-        public static final int manual=0x7f060023;
-        public static final int nextframe=0x7f060024;
-        public static final int ok=0x7f060025;
-        public static final int opendmx=0x7f060026;
-        public static final int pantxt=0x7f060027;
-        public static final int prevframe=0x7f060028;
-        public static final int restart=0x7f060029;
-        public static final int rtxt=0x7f06002a;
-        public static final int saveshow=0x7f06002b;
-        public static final int showbtn=0x7f06002c;
-        public static final int showfile=0x7f06002d;
-        public static final int start=0x7f06002e;
-        public static final int strobotxt=0x7f06002f;
-        public static final int tilttxt=0x7f060030;
-        public static final int unexpected_err=0x7f060031;
+        public static final int hello_blank_fragment=0x7f060022;
+        public static final int hello_world=0x7f060023;
+        public static final int manual=0x7f060024;
+        public static final int nextframe=0x7f060025;
+        public static final int ok=0x7f060026;
+        public static final int opendmx=0x7f060027;
+        public static final int pantxt=0x7f060028;
+        public static final int prevframe=0x7f060029;
+        public static final int restart=0x7f06002a;
+        public static final int rtxt=0x7f06002b;
+        public static final int saveshow=0x7f06002c;
+        public static final int showbtn=0x7f06002d;
+        public static final int showfile=0x7f06002e;
+        public static final int start=0x7f06002f;
+        public static final int strobotxt=0x7f060030;
+        public static final int tilttxt=0x7f060031;
+        public static final int unexpected_err=0x7f060032;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

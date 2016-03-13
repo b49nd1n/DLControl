@@ -43,6 +43,7 @@
     <string name="framenumber">\nСцена №</string>
     <string name="frametime">Время \nсцены</string>
     <string name="gtxt">Green</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <string name="manual">Ручное управление</string>
     <string name="nextframe">След. \nсцена</string>
@@ -54,11 +55,13 @@
     <string name="rtxt">Red</string>
     <string name="saveshow">Готово!</string>
     <string name="showbtn">Загрузить шоу</string>
-    <string name="showfile">7\nred green blue\n2000\n1000\n127;\n2000\n1000\n0;127;\n2000\n1000\n0;0;127;\n500\n0\n0;\n500\n0\n127;127;127;\n500\n0\n0;\n500\n0\n127;127;127;</string>
+    <string name="showfile">7\nred green
+        blue\n2000\n1000\n127;\n2000\n1000\n0;127;\n2000\n1000\n0;0;127;\n500\n0\n0;\n500\n0\n127;127;127;\n500\n0\n0;\n500\n0\n127;127;127;
+    </string>
     <string name="start">Start</string>
     <string name="strobotxt">Strobo</string>
     <string name="tilttxt">Tilt</string>
-    <string name="unexpected_err">Произошла внутренняя ошибка</string>
+    <string name="unexpected_err">Произошла внутренняя ошибка!</string>
     <!-- From: file:/home/mihail/AndroidstudioProjects/DLControl/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">

@@ -18,10 +18,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    compileOptions {
+        android {
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+        }
+    }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.0'
     compile files('libs/j2xx.jar')
     provided 'javax.xml.bind:jaxb-api:2.2.12'
+    compile 'com.android.support:support-v4:23.1.0'
 }
+
+apply plugin: 'com.android.application' //or apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
+

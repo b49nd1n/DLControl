@@ -1,10 +1,10 @@
-<LinearLayout android:id="@+id/relativelayout"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools" android:id="@+id/relativelayout"
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:baselineAligned="true"
               android:gravity="fill_horizontal"
-              android:orientation="horizontal">
+              android:orientation="horizontal" tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/mainlayout"
@@ -167,28 +167,28 @@
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/SCtable_num"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/SCtable_frametime"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/SCtable_fadetime"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="delete"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
@@ -226,8 +226,13 @@
 
 
     </LinearLayout>
-
-    <LinearLayout
+<fragment android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:name="layout.SecondFragment"
+          tools:layout="@layout/fragment_second"
+          android:id="@+id/fragment"/>
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -314,6 +319,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout><!-- From: file:/home/mihail/AndroidstudioProjects/DLControl/app/src/main/res/layout/activity_main.xml -->

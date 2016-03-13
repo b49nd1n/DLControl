@@ -9,8 +9,6 @@ import android.widget.Toast;
 import com.ftdi.j2xx.D2xxManager;
 import com.ftdi.j2xx.FT_Device;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * OpenDmx Class
  * Created by mihail on 29.10.15.

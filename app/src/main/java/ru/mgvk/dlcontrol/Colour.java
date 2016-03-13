@@ -1,8 +1,8 @@
 package ru.mgvk.dlcontrol;
 
-import java.util.ArrayList;
-
 import android.content.Context;
+
+import java.util.ArrayList;
 
 public class Colour {
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <frame>
         <shape>
             <solid android:color="#FFCF40"/>
             <corners android:radius="15.0dip" />
         </shape>
-    </item>
+    </frame>
 </selector><!-- From: file:/home/mihail/AndroidstudioProjects/DLControl/app/src/main/res/drawable-hdpi/load_btn.xml -->

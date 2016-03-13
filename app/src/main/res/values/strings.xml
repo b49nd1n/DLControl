@@ -31,12 +31,12 @@
     <string name="fixtname">Название прибора</string>
     <string name="addfunct">+</string>
     <string name="delfunct">-</string>
-    <string name="exit">Выход</string>
     <string name="entrance">Вход</string>
     <string name="error">Ошибка!</string>
     <string name="restart">Необходимо перезапустить программу!</string>
     <string name="err_config">Невозможно загрузить файлы конфигурации</string>
-    <string name="unexpected_err">Произошла внутренняя ошибка</string>
+    <string name="unexpected_err">Произошла внутренняя ошибка!</string>
+    <string name="exit">Выход</string>
     <string name="artneterr">Перезапустите Art-Net!</string>
 
 
@@ -58,16 +58,24 @@
     <string name="demo_fixt">Демо-прибор</string>
     <string name="demo_show">Демо-шоу.shw</string>
     <string name="fixtfile">3\nred 1\ngreen 2\nblue 3</string>
-    <string name="showfile">7\nred green blue\n2000\n1000\n127;\n2000\n1000\n0;127;\n2000\n1000\n0;0;127;\n500\n0\n0;\n500\n0\n127;127;127;\n500\n0\n0;\n500\n0\n127;127;127;</string>
+    <string name="showfile">7\nred green
+        blue\n2000\n1000\n127;\n2000\n1000\n0;127;\n2000\n1000\n0;0;127;\n500\n0\n0;\n500\n0\n127;127;127;\n500\n0\n0;\n500\n0\n127;127;127;
+    </string>
     <string name="demo_mode">Демо-режим</string>
     <!-- Цвета !-->
-  	<color name="second">#0099FF</color> <!-- FFB440 -->
-    <color name="main">#1d46FF</color> <!-- FF7800 -->
-    <color name="third">#0087E0</color> <!-- FFC440 -->
+    <color name="second">#0099FF</color>
+    <!-- FFB440 -->
+    <color name="main">#1d46FF</color>
+    <!-- FF7800 -->
+    <color name="third">#0087E0</color>
+    <!-- FFC440 -->
     <color name="white">#FFFFFF</color>
     <color name="blue">#0000FF</color>
     <color name="exp">#6a0000ff</color>
     <color name="alpha">#000000ff</color>
-  	
-  	
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

@@ -54,7 +54,12 @@ public class FilesControl extends MainActivity {
             Toast.makeText(context, "Не найдена папка конфигураций",
                     Toast.LENGTH_SHORT).show();
             if (!dir.mkdirs()) {
-
+                // TODO: 05.02.16 обработать случай ошибки создания папки
+                new AlertDialog.Builder(context)
+                        .setTitle(MAct.getString(R.string.unexpected_err))
+                        .setPositiveButton(MAct.getString(R.string.exit),(dialog, which) -> {System.exit(0);})
+                        .create()
+                        .show();
             }
             Log.i("DLControlDir", "Dir is made");
         }
@@ -63,50 +68,39 @@ public class FilesControl extends MainActivity {
             configfile = OpenFile(configfile, configfilename);
             if (configfile == null) {
                 //Сообщение об ошибке
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(
-                                context);
-                        builder.setTitle(MAct.getString(R.string.error))
+                runOnUiThread(() ->
+                        new AlertDialog.Builder(context)
+                                .setTitle(MAct.getString(R.string.error))
                                 .setMessage(MAct.getString(R.string.err_config))
                                 .setCancelable(false)
                                 .setNegativeButton(MAct.getString(R.string.exit),
-                                        new DialogInterface.OnClickListener() {
+                                        (dialog, which) -> {
+                                            System.exit(0);
+                                        })
+                                .setPositiveButton(MAct.getString(R.string.demo_mode),
+                                        (dialog, which) -> {
+                                            try {
 
-                                            @Override
-                                            public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                System.exit(0);
+                                                int t[] = {R.string.configfile, R.string.fixtfile, R.string.showfile};
+                                                int f[] = {R.string.demo_config, R.string.demo_fixt, R.string.demo_show};
+                                                for (int i = 0; i < 3; i++) {
+                                                    String s = MAct.getString(t[i]); // Демо-конфиг
+                                                    File file = new File(PATH + MAct.getString(f[i]));
+                                                    PrintWriter writer = new PrintWriter(file);
+                                                    writer.print(s);
+                                                    writer.close();
+                                                }
+
+                                                Log.i("DemoFile", "Demo files created");
+
+                                                filesControl();
+
+                                            } catch (Exception e) {
+                                                Log.e("DemoFile", "DemoFileCopyErr " + e);
                                             }
-                                        }).setPositiveButton(MAct.getString(R.string.demo_mode), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                try {
-
-                                    int t[] = {R.string.configfile, R.string.fixtfile, R.string.showfile};
-                                    int f[] = {R.string.demo_config,R.string.demo_fixt,R.string.demo_show};
-                                    for (int i = 0; i < 3; i++) {
-                                        String s = MAct.getString(t[i]); // Демо-конфиг
-                                        File file = new File(PATH + MAct.getString(f[i]));
-                                        PrintWriter writer = new PrintWriter(file);
-                                        writer.print(s);
-                                        writer.close();
-                                    }
-
-                                    Log.i("DemoFile", "Demo files created");
-
-                                    filesControl();
-
-                                } catch (Exception e) {
-                                    Log.e("DemoFile", "DemoFileCopyErr " + e);
-                                }
-                            }
-                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }
-                });
+                                        })
+                                .create()
+                                .show());
 
             } else {
                 configfile.mark(1000);
@@ -146,8 +140,8 @@ public class FilesControl extends MainActivity {
             MAct.spinnerAdapter
                     .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             MAct.ShowChoose.setAdapter(MAct.spinnerAdapter);
-        }catch (Exception e){
-            Log.e("GetShows",""+e);
+        } catch (Exception e) {
+            Log.e("GetShows", "" + e);
 
         }
     }
@@ -179,12 +173,12 @@ public class FilesControl extends MainActivity {
             String s = configfile.readLine();
             configfile.close();
             if (s == null) {
-                MAct.configmap.put(MAct.DEFAULT_PROT,0);  //флаг "протокол по умолчанию"
-            }else {
+                MAct.configmap.put(MAct.DEFAULT_PROT, 0);  //флаг "протокол по умолчанию"
+            } else {
                 a = Integer.valueOf(s);
-                Log.d("configmap",""+a);
+                Log.d("configmap", "" + a);
                 MAct.configmap.put(MAct.DEFAULT_PROT, a);//флаг "протокол по умолчанию"
-                Log.d("configmap",""+MAct.configmap.get(MAct.DEFAULT_PROT));
+                Log.d("configmap", "" + MAct.configmap.get(MAct.DEFAULT_PROT));
             }
         } catch (IOException e) {
             Log.e("ConfigFile", "FileReadingError: " + e);
@@ -196,22 +190,24 @@ public class FilesControl extends MainActivity {
     public boolean saveConfig() {
         boolean res;
 
-        File f = new File(PATH+configfilename);
+        File f = new File(PATH + configfilename);
         PrintWriter writer;
         try {
 
-            if(!f.delete()){Log.e("SaveConfig","Error deleting file");}
+            if (!f.delete()) {
+                Log.e("SaveConfig", "Error deleting file");
+            }
             if (!f.createNewFile()) {
-                Log.e("SaveConfig","Error creating file "+f.getName());
+                Log.e("SaveConfig", "Error creating file " + f.getName());
                 res = false;
             } else {
-                Log.d("SaveConfig","File"+f.getName()+"created");
+                Log.d("SaveConfig", "File" + f.getName() + "created");
 
-                int fc = (Integer)MAct.configmap.get(MAct.FIXTURES_COUNT);
+                int fc = (Integer) MAct.configmap.get(MAct.FIXTURES_COUNT);
                 writer = new PrintWriter(f);
                 writer.println(fc);
 
-                for (int i = 0; i < fc ; i++) {
+                for (int i = 0; i < fc; i++) {
                     writer.println(FixtMas[i].substring(4));
                 }
 

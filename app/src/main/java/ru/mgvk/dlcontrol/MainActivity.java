@@ -1,7 +1,6 @@
 package ru.mgvk.dlcontrol;
 
 import android.app.ActionBar.LayoutParams;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,7 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,7 +39,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MainActivity extends Activity {
+import layout.SecondFragment;
+
+public class MainActivity extends FragmentActivity implements SecondFragment.OnFragmentInteractionListener {
 
     // Переменные
     public Boolean configured,
@@ -81,7 +84,6 @@ public class MainActivity extends Activity {
 
     // Special
     Context context;
-    Context Activity;
     ArrayAdapter<String> spinnerAdapter;
 
     // Imports
@@ -92,6 +94,7 @@ public class MainActivity extends Activity {
     MainActivity MAct = this;
     ShowControl showControl;
     FilesControl fControl;
+    SecondFragment fragment;
 
 
     @Override
@@ -111,8 +114,7 @@ public class MainActivity extends Activity {
         } catch (Exception e) {
             Log.e("RegisterReciever", "" + e);
         }
-        Activity = this;
-        RESTART_INTENT = PendingIntent.getActivity(((ContextWrapper) Activity)
+        RESTART_INTENT = PendingIntent.getActivity(((ContextWrapper) context)
                 .getBaseContext(), 0, new Intent(getIntent()), PendingIntent.FLAG_ONE_SHOT);
 
         ScrollLayout = (ScrollView) findViewById(R.id.manualscroll);
@@ -123,8 +125,6 @@ public class MainActivity extends Activity {
         SCFrameLayout = (LinearLayout) findViewById(R.id.SCFrameLayout);
         SCLayout = (LinearLayout) findViewById(R.id.SCLayout);
         SCLayout.setVisibility(LinearLayout.GONE);
-//        SCLayout.setEnabled(false); // TODO: 31.12.15 нафига отключать?!
-
 
         Manualsw = (Switch) findViewById(R.id.manualsw);
 
@@ -157,6 +157,8 @@ public class MainActivity extends Activity {
         fixture = new Fixture(this);
         dmxControl = new DmxControl(this);
         fControl = new FilesControl(this);
+//        fragment =  getFragmentManager().findFragmentById(R.id.fragment);
+        fragment = new SecondFragment();
 //        dmxControl.Start(dmxControl.OPEN_DMX);
 
         showCreating = new ShowCreating(this);
@@ -231,36 +233,35 @@ public class MainActivity extends Activity {
      * а запускается указанный протокол.
      */
     void protChoose() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("al dialog", "" + configmap.get(DEFAULT_PROT));
-                if (configmap.get(DEFAULT_PROT) == null || (Integer) configmap.get(DEFAULT_PROT) == 0) {
-                    CharSequence[] pnames = new CharSequence[dmxControl.PrtclMap.size()];
-                    for (int i = 0; i < dmxControl.PrtclMap.size(); i++) {
-                        pnames[i] = dmxControl.PrtclMap.get(i + 1).keySet().toString();
-                    }
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle(getString(R.string.chprottitle))
-                            .setCancelable(false)
-                            .setSingleChoiceItems(pnames, -1, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    configmap.put(DEFAULT_PROT, which + 1);
-                                }
-                            })
-                            .setView(chkbox)
-                            .setNegativeButton(getString(R.string.exit),
-                                    new onDialogClick())
-                            .setPositiveButton(getString(R.string.entrance), new onDialogClick());
-                    AlertDialog al = builder.create();
-                    al.show();
-                } else {
-                    dmxControl.Start((Integer) configmap.get(DEFAULT_PROT));
+        runOnUiThread(() -> {
+            Log.d("al dialog", "" + configmap.get(DEFAULT_PROT));
+            if (configmap.get(DEFAULT_PROT) == null || (Integer) configmap.get(DEFAULT_PROT) == 0) {
+                CharSequence[] pnames = new CharSequence[dmxControl.PrtclMap.size()];
+                for (int i = 0; i < dmxControl.PrtclMap.size(); i++) {
+                    pnames[i] = dmxControl.PrtclMap.get(i + 1).keySet().toString();
                 }
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(getString(R.string.chprottitle))
+                        .setCancelable(false)
+                        .setSingleChoiceItems(pnames, -1, (dialog, which) -> {
+                            configmap.put(DEFAULT_PROT, which + 1);
+                        })
+                        .setView(chkbox)
+                        .setNegativeButton(getString(R.string.exit),
+                                new onDialogClick())
+                        .setPositiveButton(getString(R.string.entrance), new onDialogClick());
+                AlertDialog al = builder.create();
+                al.show();
+            } else {
+                dmxControl.Start((Integer) configmap.get(DEFAULT_PROT));
             }
         });
 
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 
@@ -279,12 +280,7 @@ public class MainActivity extends Activity {
                             fControl.saveConfig();
                         }
                     } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(context, getString(R.string.chprottitle) + "!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        runOnUiThread(() -> Toast.makeText(context, getString(R.string.chprottitle) + "!", Toast.LENGTH_SHORT).show());
                     }
                     break;
 
@@ -322,31 +318,28 @@ public class MainActivity extends Activity {
 
 //                Thread.sleep(2000);
 
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(() -> {
 
-                    for (int i = 1; i <= 50; i++) {
-                        StartBtn.setAlpha(5 * i);
-                        try {
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
-                            Log.e("BTNAlpha", "err " + e);
-                        }
+                for (int i = 1; i <= 50; i++) {
+                    StartBtn.setAlpha(5 * i);
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        Log.e("BTNAlpha", "err " + e);
                     }
+                }
 //                        StartBtn.setAlpha(200);
-                    if (StartBtn.isPressed()) {
-                        if (!extmode) {
-                            extmode = true;
-                            Toast.makeText(context,
-                                    "Включен расширенный режим!",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            extmode = false;
-                            Toast.makeText(context,
-                                    "Расширенный режим выключен!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                if (StartBtn.isPressed()) {
+                    if (!extmode) {
+                        extmode = true;
+                        Toast.makeText(context,
+                                "Включен расширенный режим!",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        extmode = false;
+                        Toast.makeText(context,
+                                "Расширенный режим выключен!",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -535,11 +528,12 @@ public class MainActivity extends Activity {
         public void onProgressChanged(SeekBar seekBar, int progress,
                                       boolean fromUser) {
             dmxmas[ch-1] = (byte) progress;
-            DmxStatusTxt.setText(" Адрес Dmx канала: " + String.valueOf(ch) +
-                    " Dmx Значение: " + String.valueOf(progress));
-// DmxStatusTxt.setText(String.valueOf(progress));
-            //вывод значений DMX и номера канала в Textview.
 
+
+                DmxStatusTxt.setText(" Адрес Dmx канала: " + String.valueOf(ch) +
+                        " Dmx Значение: " + String.valueOf(progress));
+// DmxStatusTxt.setText(String.valueOf(progress));
+                //вывод значений DMX и номера канала в Textview.
         }
 
         @Override
@@ -617,13 +611,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void run() {
 
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            txt.setText("Gobo");
-                        }
-                    });
+                    runOnUiThread(() -> txt.setText("Gobo"));
 
                 }
             }, 2000);
@@ -807,18 +795,14 @@ public class MainActivity extends Activity {
         builder.setTitle(title)
                 .setMessage(mess)
                 .setCancelable(false)
-                .setNegativeButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.ok), (dialog, which) -> {
+                    mgr = (AlarmManager) Activity
+                            .getSystemService(Context.ALARM_SERVICE);
+                    mgr.set(AlarmManager.RTC,
+                            System.currentTimeMillis() + 1000,
+                            RESTART_INTENT);
+                    System.exit(2);
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mgr = (AlarmManager) Activity
-                                .getSystemService(Context.ALARM_SERVICE);
-                        mgr.set(AlarmManager.RTC,
-                                System.currentTimeMillis() + 1000,
-                                RESTART_INTENT);
-                        System.exit(2);
-
-                    }
                 });
         AlertDialog alert = builder.create();
         alert.show();
